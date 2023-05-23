@@ -19,5 +19,6 @@ export class Contact {
     registration_date: string;
 
     @ManyToOne(() => Client, client => client.contacts)
-    client: Client
+    @JoinColumn()
+    client?: Client
 }

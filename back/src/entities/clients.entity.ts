@@ -19,5 +19,5 @@ export class Client {
     registration_date: string;
 
     @OneToMany(() => Contact, contact => contact.client)
-    contacts: Contact[];
+    contacts?: Contact[];
 }
