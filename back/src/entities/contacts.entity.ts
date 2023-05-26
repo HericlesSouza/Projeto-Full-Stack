@@ -1,24 +1,23 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Client } from "./clients.entity";
 
-Entity("contacts")
+@Entity("contacts")
 export class Contact {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("increment")
     id: number;
 
-    @Column()
+    @Column({ type: "varchar" })
     full_name: string;
 
-    @Column()
+    @Column({ type: "varchar" })
     email: string;
 
-    @Column()
+    @Column({ type: "varchar" })
     phone: string;
 
     @CreateDateColumn({ type: "date" })
     registration_date: string;
 
     @ManyToOne(() => Client, client => client.contacts)
-    @JoinColumn()
-    client?: Client
+    client: Client
 }
