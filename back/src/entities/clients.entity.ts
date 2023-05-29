@@ -21,7 +21,7 @@ export class Client {
     @CreateDateColumn({ type: "date" })
     createdAt: string;
 
-    @OneToMany(() => Contact, contact => contact.client)
+    @OneToMany(() => Contact, contact => contact.client, {eager: true})
     contacts: Contact[];
 
     @BeforeInsert()

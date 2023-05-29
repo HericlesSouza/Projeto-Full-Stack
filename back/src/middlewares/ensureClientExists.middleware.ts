@@ -4,7 +4,6 @@ import { TCreateClient } from "../interfaces/clients.interface";
 import { Client } from "../entities/clients.entity";
 import { AppError } from "../error";
 
-
 export const ensureClientExistsMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     const idClient = Number(req.params.id);
     const client: TCreateClient = req.body;
