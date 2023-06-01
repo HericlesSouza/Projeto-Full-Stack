@@ -78,8 +78,7 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
         const contact = contacts.find((element) => {
             return String(element.id) === event.currentTarget.id;
         });
-        console.log(event.currentTarget.id, contact);
-
+    
         setContactSelected(contact!);
         setModalEdit(true);
     };
@@ -89,7 +88,7 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
         try {
             await api.patch(`contacts/${contactSelected.id}`, data);
             toast.update(id, {
-                render: "Tecnologia atualizada com sucesso!",
+                render: "Contato atualizado com sucesso!",
                 type: "success",
                 isLoading: false,
                 theme: "dark",
@@ -104,7 +103,7 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
         } catch (error) {
             console.log(error);
             toast.update(id, {
-                render: "Ops, algo deu errado!",
+                render: "Nome de contato já cadastrado!",
                 type: "success",
                 isLoading: false,
                 theme: "dark",

@@ -1,5 +1,5 @@
 import { Alert, StyledDiv, Trash } from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { Button } from "../../components/button";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -17,15 +17,28 @@ export const Dashboard = () => {
         openModalEditContact,
     } = useContext(ContactsContext);
 
-    console.log(contacts);
     const { user } = useContext(UserContext);
+
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem("@token");
+        navigate("/");
+    };
 
     return (
         <StyledDiv>
             <header>
                 <div className="container">
                     <h1>Contacts Plus</h1>
-                    <Link to={"/"}>Desconectar</Link>
+                    <Button
+                        click={logout}
+                        type="button"
+                        color="btnGreyDark"
+                        width="max-content"
+                    >
+                        Desconectar
+                    </Button>
                 </div>
             </header>
             <section>
