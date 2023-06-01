@@ -123,7 +123,7 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
             await api.delete(`contacts/${contactSelected.id}`);
 
             toast.update(id, {
-                render: "Tecnologia deletada com sucesso!",
+                render: "Contato deletado com sucesso!",
                 type: "success",
                 isLoading: false,
                 theme: "dark",
