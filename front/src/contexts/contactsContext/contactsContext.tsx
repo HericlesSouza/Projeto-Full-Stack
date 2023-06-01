@@ -25,6 +25,7 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
     const [contactSelected, setContactSelected] = useState<iContact>(
         {} as iContact
     );
+    const [modalEditUser, setModalEditUser] = useState(false)
 
     useEffect(() => {
         (async () => {
@@ -167,6 +168,8 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
                 openModalEditContact,
                 editContact,
                 deleteContact,
+                modalEditUser,
+                setModalEditUser
             }}
         >
             {children}

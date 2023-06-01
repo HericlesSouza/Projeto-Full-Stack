@@ -16,7 +16,6 @@ export const StyledDiv = styled.div`
 
       h1 {
         color:var(--color-primary);
-        
       }
     }
 
@@ -50,7 +49,7 @@ export const StyledDiv = styled.div`
 
       @media (min-width: 1024px) {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         margin-bottom: 35px;
       }
@@ -60,6 +59,7 @@ export const StyledDiv = styled.div`
         font-size: var(--title-3);
         line-height: 28px;
         color: var(--grey-0);
+        text-align: center;
       }
 
       p {

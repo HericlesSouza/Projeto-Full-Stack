@@ -31,7 +31,6 @@ export const Dashboard = () => {
             <section>
                 <div className="container">
                     <h1>Olá, {user.full_name}</h1>
-                    <p>teste</p>
                 </div>
             </section>
             <section className="container">

@@ -33,6 +33,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
         (async () => {
             try {
                 const { data } = await api.get(`clients/${id}`);
+                navigate("/dashboard");
                 setUser(data);
             } catch (error) {
                 console.log(error);
@@ -86,7 +87,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
                 render: "Login realizado com sucesso!",
                 type: "success",
                 isLoading: false,
-                theme: "colored",
+                theme: "dark",
                 autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -105,7 +106,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
                 render: "Ops, algo deu errado!",
                 type: "error",
                 isLoading: false,
-                theme: "colored",
+                theme: "dark",
                 autoClose: 2500,
                 hideProgressBar: false,
                 closeOnClick: true,

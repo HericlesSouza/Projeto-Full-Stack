@@ -13,8 +13,10 @@ export interface iContactsProviderValue {
     contactSelected: iContact;
     setContactSelected: React.Dispatch<React.SetStateAction<iContact>>;
     openModalEditContact: (event: any) => void;
-    editContact: (data: iCreateContact) => Promise<void>
-    deleteContact: () => Promise<void>
+    editContact: (data: iCreateContact) => Promise<void>;
+    deleteContact: () => Promise<void>;
+    modalEditUser: boolean
+    setModalEditUser: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface iCreateContact {

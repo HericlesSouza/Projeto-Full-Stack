@@ -87,7 +87,7 @@ export const SignUp = () => {
                     placeholder={"Digite aqui sua senha novamente"}
                     register={register("passwordConfirmed")}
                 />
-                {}
+                
                 {errors.passwordConfirmed && (
                     <p className="error">{errors.passwordConfirmed.message}</p>
                 )}
