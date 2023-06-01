@@ -22,15 +22,15 @@ export const ensureContactExistsMiddleware = async (req: Request, res: Response,
         }
     }
 
-    if (contact.email) {
+    if (contact.full_name) {
         const checkContactExist = await contactRepository.findOne({
             where: {
-                email: contact.email,
+                full_name: contact.full_name,
             }
         });
 
         if (checkContactExist) {
-            throw new AppError("Email already exists", 409);
+            throw new AppError("Name already exists", 409);
         }
     }
 
