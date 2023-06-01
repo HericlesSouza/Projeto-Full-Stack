@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     iLoginUser,
@@ -15,13 +15,22 @@ export const UserContext = createContext({} as iUserProviderValue);
 export const UserProvider = ({ children }: iUserProviderProps) => {
     const [registerError, setRegisterError] = useState(false);
     const navigate = useNavigate();
+    const token = localStorage.getItem("@token");
+
+    useEffect(() => {
+        if (!token) {
+            navigate("/");
+            return;
+        }
+
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
+    }, []);
 
     const userRegister = async (data: iRegisterUser) => {
         const id = toast.loading("Por favor espere...");
 
         try {
             await api.post("clients", data);
-
             toast.update(id, {
                 render: "Conta criada com sucesso!",
                 type: "success",
@@ -38,7 +47,6 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
             navigate("/");
         } catch (error) {
             setRegisterError(true);
-            console.log(error)
             toast.update(id, {
                 render: "Endereço de e-mail já existe!",
                 type: "error",
@@ -73,12 +81,11 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
                 progress: undefined,
             });
 
-            navigate("/dashboard");
+            api.defaults.headers.common.authorization = `Bearer ${request.data.token}`;
 
-            // localStorage.setItem(
-            //     "@token",
-            //     JSON.stringify(request.data.accessToken)
-            // );
+            localStorage.setItem("@token", request.data.token);
+
+            navigate("/dashboard");
         } catch (error) {
             toast.update(id, {
                 render: "Ops, algo deu errado!",
@@ -105,6 +112,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
                 registerError,
                 setRegisterError,
                 userLogin,
+                token
             }}
         >
             {children}

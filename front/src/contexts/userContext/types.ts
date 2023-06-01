@@ -9,8 +9,9 @@ export interface iUserProviderValue {
     navigate: NavigateFunction
     userRegister(data: iRegisterUser): void,
     registerError: boolean,
-    setRegisterError: React.Dispatch<React.SetStateAction<boolean>>
-    userLogin(data: iLoginUser): void
+    setRegisterError: React.Dispatch<React.SetStateAction<boolean>>,
+    userLogin(data: iLoginUser): void,
+    token: string | null
 }
 
 export interface iRegisterUser {

@@ -4,7 +4,7 @@ import { StyledButton } from "./style";
 interface ButtonProps {
     children: React.ReactNode;
     color: string;
-    size: string;
+    size?: string;
     width?: string;
     type: "button" | "reset" | "submit";
     click?: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -20,13 +20,13 @@ export const Button = ({
 }: ButtonProps) => {
     function onClickButton(event: MouseEvent<HTMLButtonElement>) {
         if (click) {
-            event;
+            click(event)
         }
     }
 
     return (
         <StyledButton
-            onClick={onClickButton}
+            onClick={onClickButton} 
             type={type}
             buttonColor={color}
             buttonSize={size}

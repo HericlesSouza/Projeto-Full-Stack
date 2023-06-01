@@ -40,6 +40,7 @@ export const StyledDiv = styled.div`
 
     h1 {
        color: var(--color-primary);
+       user-select: none;
     }
   }
 
