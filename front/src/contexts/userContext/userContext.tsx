@@ -3,16 +3,19 @@ import { useNavigate } from "react-router-dom";
 import {
     iLoginUser,
     iRegisterUser,
+    iUser,
     iUserProviderProps,
     iUserProviderValue,
 } from "./types";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { api } from "../../services/api";
+import jwt_decode from "jwt-decode";
 
 export const UserContext = createContext({} as iUserProviderValue);
 
 export const UserProvider = ({ children }: iUserProviderProps) => {
+    const [user, setUser] = useState<iUser>({} as iUser);
     const [registerError, setRegisterError] = useState(false);
     const navigate = useNavigate();
     const token = localStorage.getItem("@token");
@@ -24,6 +27,17 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
         }
 
         api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+        const { id } = jwt_decode(token) as { id: number };
+
+        (async () => {
+            try {
+                const { data } = await api.get(`clients/${id}`);
+                setUser(data);
+            } catch (error) {
+                console.log(error);
+            }
+        })();
     }, []);
 
     const userRegister = async (data: iRegisterUser) => {
@@ -112,7 +126,9 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
                 registerError,
                 setRegisterError,
                 userLogin,
-                token
+                token,
+                user,
+                setUser,
             }}
         >
             {children}

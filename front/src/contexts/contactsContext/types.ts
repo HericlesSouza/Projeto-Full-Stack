@@ -3,15 +3,28 @@ export interface iContactsProviderProps {
 }
 
 export interface iContactsProviderValue {
-    contacts: [];
-    setContacts: React.Dispatch<React.SetStateAction<[]>>;
+    contacts: iContact[];
+    setContacts: React.Dispatch<React.SetStateAction<iContact[]>>
     modalCreate: boolean;
     setModalCreate: React.Dispatch<React.SetStateAction<boolean>>;
     createContact: (data: iCreateContact) => Promise<void>;
+    modalEdit: boolean;
+    setModalEdit: React.Dispatch<React.SetStateAction<boolean>>;
+    contactSelected: iContact;
+    setContactSelected: React.Dispatch<React.SetStateAction<iContact>>;
+    openModalEditContact: (event: any) => void;
+    editContact: (data: iCreateContact) => Promise<void>
+    deleteContact: () => Promise<void>
 }
 
 export interface iCreateContact {
     full_name: string,
     email: string,
-    phone: string
+    phone: string,
+    [key: string]: any
+}
+
+export interface iContact extends iCreateContact {
+    id: string,
+    created_at: string,
 }

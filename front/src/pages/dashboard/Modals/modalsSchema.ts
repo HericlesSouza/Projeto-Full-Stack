@@ -9,7 +9,7 @@ export const createContactSchema = yup.object().shape({
     phone: yup.string().required("Campo obrigatório")
 });
 
-export const editTechnologySchema = yup.object().shape({
+export const editContactSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
     status: yup.string().required("Selecione uma opção"),
 })

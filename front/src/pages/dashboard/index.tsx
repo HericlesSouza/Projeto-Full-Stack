@@ -1,21 +1,24 @@
 import { Alert, StyledDiv, Trash } from "./style";
 import { Link } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { api } from "../../services/api";
+import { useContext } from "react";
 import { Button } from "../../components/button";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { ContactsContext } from "../../contexts/contactsContext/contactsContext";
-import { ModalCreateContact } from "./Modals";
-
-interface iContact {
-    id: string;
-    full_name: string;
-    email: string;
-    phone: string;
-}
+import { ModalCreateContact, ModalEditContact } from "./Modals";
+import { iContact } from "../../contexts/contactsContext/types";
+import { UserContext } from "../../contexts/userContext/userContext";
 
 export const Dashboard = () => {
-    const { contacts, setContacts, modalCreate, setModalCreate } = useContext(ContactsContext);
+    const {
+        contacts,
+        modalCreate,
+        setModalCreate,
+        modalEdit,
+        openModalEditContact,
+    } = useContext(ContactsContext);
+
+    console.log(contacts);
+    const { user } = useContext(UserContext);
 
     return (
         <StyledDiv>
@@ -27,7 +30,7 @@ export const Dashboard = () => {
             </header>
             <section>
                 <div className="container">
-                    <h1>Olá, Jeje</h1>
+                    <h1>Olá, {user.full_name}</h1>
                     <p>teste</p>
                 </div>
             </section>
@@ -44,17 +47,14 @@ export const Dashboard = () => {
                     </Button>
                     {modalCreate && <ModalCreateContact />}
                 </div>
-                {contacts.length === 0 ? (
+                {contacts && contacts.length === 0 ? (
                     <div className="no-technologies">
                         <Alert />
-                        <h1>
-                            Não conseguimos encontrar nenhuma tecnologia
-                            cadastrada.
-                        </h1>
+                        <h1>Não conseguimos encontrar nenhum contato.</h1>
                     </div>
                 ) : (
                     <div className="div-list-technologies">
-                        {/* {modalEdit && <ModalEditTechnologies />} */}
+                        {modalEdit && <ModalEditContact />}
                         <ul>
                             {contacts &&
                                 contacts.map((element: iContact) => {
@@ -62,8 +62,7 @@ export const Dashboard = () => {
                                         <li
                                             key={element.id}
                                             id={element.id}
-                                            className="animate__animated animate__fadeInLeft"
-                                            // onClick={openModalEditTechnologies}
+                                            onClick={openModalEditContact}
                                         >
                                             <h2>{element.full_name}</h2>
                                             <div>
