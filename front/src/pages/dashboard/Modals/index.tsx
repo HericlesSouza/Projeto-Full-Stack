@@ -46,7 +46,7 @@ export const ModalCreateContact = () => {
                         <Input
                             id="full_name"
                             type="text"
-                            placeholder="Nome da tecnologia..."
+                            placeholder="Nome do contato..."
                             register={register("full_name")}
                         />
                         {errors.full_name && (
@@ -58,7 +58,7 @@ export const ModalCreateContact = () => {
                         <Input
                             id="email"
                             type="text"
-                            placeholder="Nome da tecnologia..."
+                            placeholder="Email do contato..."
                             register={register("email")}
                         />
                         {errors.email && (
@@ -106,6 +106,7 @@ export const ModalEditContact = () => {
     });
 
     const submit: SubmitHandler<iCreateContact> = async (data) => {
+
         for (const chave in data) {
             if (
                 Object.prototype.hasOwnProperty.call(data, chave) &&
@@ -134,7 +135,7 @@ export const ModalEditContact = () => {
                         <Input
                             id="full_name"
                             type="text"
-                            placeholder="Nome da tecnologia..."
+                            placeholder="Nome do contato..."
                             register={register("full_name")}
                         />
                         {errors.full_name && (
@@ -146,7 +147,7 @@ export const ModalEditContact = () => {
                         <Input
                             id="email"
                             type="text"
-                            placeholder="Nome da tecnologia..."
+                            placeholder="Email do contato..."
                             register={register("email")}
                         />
                         {errors.email && (
