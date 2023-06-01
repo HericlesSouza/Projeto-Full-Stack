@@ -33,8 +33,8 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
         (async () => {
             try {
                 const { data } = await api.get(`clients/${id}`);
-                navigate("/dashboard");
                 setUser(data);
+                navigate("/dashboard");
             } catch (error) {
                 console.log(error);
             }
@@ -50,7 +50,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
                 render: "Conta criada com sucesso!",
                 type: "success",
                 isLoading: false,
-                theme: "colored",
+                theme: "dark",
                 autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -66,7 +66,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
                 render: "Endereço de e-mail já existe!",
                 type: "error",
                 isLoading: false,
-                theme: "colored",
+                theme: "dark",
                 autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,

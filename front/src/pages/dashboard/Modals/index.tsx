@@ -106,7 +106,6 @@ export const ModalEditContact = () => {
     });
 
     const submit: SubmitHandler<iCreateContact> = async (data) => {
-        console.log(data);
         for (const chave in data) {
             if (
                 Object.prototype.hasOwnProperty.call(data, chave) &&
